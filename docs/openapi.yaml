@@ -1,0 +1,120 @@
+openapi: 3.0.2
+info:
+  title: Backend Prototype
+  version: '0'
+  description: Quick reliable backend prototypes
+  contact:
+    name: Neel Kamath
+    email: neelkamathonline@gmail.com
+    url: https://github.com/neelkamath/backend-prototype
+  license:
+    name: MIT
+    url: https://github.com/neelkamath/backend-prototype/blob/master/LICENSE
+servers:
+  - url: https:/backend-prototype.herokuapp.com/
+    description: The prototype server
+paths:
+  /names:
+    delete:
+      tags: [names]
+      description: Deletes a name
+      operationId: deleteName
+      requestBody:
+        $ref: '#/components/requestBodies/Name'
+      responses:
+        '204':
+          description: The name was successfully deleted
+        '400':
+          description: The name to be delete doesn't exist
+    get:
+      tags: [names]
+      description: Every person's name that has been saved till date.
+      operationId: getNames
+      responses:
+        '200':
+          $ref: '#/components/responses/Names'
+    patch:
+      tags: [names]
+      description: Update a name
+      operationId: updateName
+      requestBody:
+        $ref: '#/components/requestBodies/NameUpdate'
+      responses:
+        '204':
+          description: Successfully updated the name
+        '400':
+          description: The name to update doesn't exist
+    post:
+      tags: [names]
+      description: Save a name
+      operationId: saveName
+      requestBody:
+        $ref: '#/components/requestBodies/Name'
+      responses:
+        '204':
+          description: Successfully saved the name
+        '400':
+          description: The name already exists
+  /health_check:
+    get:
+      tags: [status]
+      description: Checks if all systems are operational.
+      operationId: healthCheck
+      responses:
+        '204':
+          description: All systems are operational.
+components:
+  schemas:
+    Name:
+      example:
+        name: Neel
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name to save
+      required: [name]
+    Names:
+      example:
+        names: [Neel, Ashray, Arjun]
+      type: object
+      properties:
+        names:
+          description: The names of everyone
+          type: array
+          items:
+            type: string
+      required: [names]
+    NameUpdate:
+      example:
+        old_name: Neel
+        new_name: Richard
+      properties:
+        old_name:
+          type: string
+          description: The name which is to be updated
+        new_name:
+          type: string
+          description: The name to replace the old name
+      required: [old_name, new_name]
+  requestBodies:
+    Name:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Name'
+    NameUpdate:
+      required: true
+      description: A name to update
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NameUpdate'
+  responses:
+    Names:
+      description: All the names
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Names'

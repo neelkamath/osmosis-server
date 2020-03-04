@@ -1,0 +1,8 @@
+.gradle/
+.idea/
+build/
+out/
+public/
+.DS_Store
+.env
+redoc-static.html

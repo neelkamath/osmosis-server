@@ -1,0 +1,29 @@
+before_script: [export GRADLE_USER_HOME=`pwd`/.gradle]
+
+cache:
+  paths: [.gradle/caches]
+
+test-server:
+  image: openjdk:8
+  script: docker-compose -f docker/docker-compose.yml -f docker/docker-compose.test.yml --project-directory .
+    run --rm prototype
+  artifacts:
+    when: always
+    paths: [build/reports/tests/test/]
+
+# Remove this block if you're not storing the OpenAPI spec in this repository.
+test-spec:
+  image: node:lts
+  script: npx @stoplight/spectral lint docs/openapi.yaml
+
+# Remove this block if you're not storing the OpenAPI spec in this repository.
+pages:
+  stage: deploy
+  image: node:lts
+  script:
+    - npx redoc-cli bundle docs/openapi.yaml --title 'Backend Prototype'
+    - mkdir public
+    - mv redoc-static.html public/index.html
+  artifacts:
+    paths: [public]
+  only: [master]
