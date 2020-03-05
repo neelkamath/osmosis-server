@@ -15,7 +15,7 @@ RUN gradle --no-daemon -i shadowJar
 
 FROM openjdk:8-jre-alpine
 WORKDIR /app
-COPY --from=builder /app/build/libs/backend-prototype-all.jar .
+COPY --from=builder /app/build/libs/osmosis-server-all.jar .
 COPY --from=builder /app/build/resources/main/ src/main/resources/
 EXPOSE 80
 RUN apk --no-cache add curl

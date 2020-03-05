@@ -17,9 +17,10 @@ dependencies {
     implementation("io.ktor:ktor-gson:$ktorVersion")
     testImplementation("io.ktor:ktor-server-test-host:$ktorVersion")
     implementation("ch.qos.logback:logback-classic:1.2.3")
-    implementation("org.mongodb:mongodb-driver-sync:3.11.1")
+    implementation("org.mongodb:mongodb-driver-sync:3.12.1")
 }
 
+// apisupport@mapmyindia.com
 tasks {
     named<Test>("test") { useJUnitPlatform() }
     withType<Jar> {

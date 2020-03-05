@@ -10,20 +10,3 @@ test-server:
   artifacts:
     when: always
     paths: [build/reports/tests/test/]
-
-# Remove this block if you're not storing the OpenAPI spec in this repository.
-test-spec:
-  image: node:lts
-  script: npx @stoplight/spectral lint docs/openapi.yaml
-
-# Remove this block if you're not storing the OpenAPI spec in this repository.
-pages:
-  stage: deploy
-  image: node:lts
-  script:
-    - npx redoc-cli bundle docs/openapi.yaml --title 'Backend Prototype'
-    - mkdir public
-    - mv redoc-static.html public/index.html
-  artifacts:
-    paths: [public]
-  only: [master]

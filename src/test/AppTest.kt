@@ -1,6 +1,6 @@
-package backend.prototype.test
+package com.neelkamath.osmosis.server.test
 
-import backend.prototype.main
+import com.neelkamath.osmosis.server.main
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import io.ktor.application.Application

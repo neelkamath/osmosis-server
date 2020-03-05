@@ -1,1 +1,1 @@
-rootProject.name = "backend-prototype"
+rootProject.name = "osmosis-server"
