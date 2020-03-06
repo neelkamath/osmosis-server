@@ -2,6 +2,8 @@
 
 ![Logo](logo.png)
 
+This repo contains the backend I wrote for our project [Osmosis](https://devfolio.co/submissions/osmosis) which was built at the hackathon [HackBout](https://www.hackbout.tech/). The [admin panel](https://github.com/AshtrayShetty/HackBout) was built by [Ashray Shetty](https://github.com/AshtrayShetty). The [conductor](https://github.com/Arjunadappa/osmosis-conductor) and [passenger](https://github.com/Arjunadappa/osmosis-passenger)'s apps were built by [Arjun Adappa](https://github.com/Arjunadappa).
+
 See the [spec repo](https://github.com/neelkamath/osmosis-spec) for the specs on things like the DB schema. The prototype may not follow the spec to the dot.
 
 **For Passengers**
